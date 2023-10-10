@@ -1,7 +1,6 @@
 const { application, json } = require('express');
 const app = require('./app');
 const supertest = require('supertest');
-const tasks = require('./routes/index').tasks;
 
 test('GET / returns status 200 OK', done => {
     supertest(app)
@@ -10,16 +9,11 @@ test('GET / returns status 200 OK', done => {
     .end(done);
 });
 
-test('GET / returns with array "tasks"', done => {
-    supertest(app)
-    .get('/')
-    .expect(200, tasks)
-    .end(done);
-});
-
-test('array tasks is in JSON format', done => {
-    supertest(app)
-    .get('/')
-    .expect(200, typeof tasks == application/json)
-    .end(done);
+test('GET /todo returns with array "tasks"', async() => {
+    const response = await supertest(app).get('/todo');
+    const tasks = JSON.parse(response.text);
+    expect(tasks).toEqual(
+        [{description: "task 1", done: false},
+        {description: "task 2", done: false}]
+    );
 });
