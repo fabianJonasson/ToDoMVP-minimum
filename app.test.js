@@ -17,3 +17,16 @@ test('GET /todo returns with array "tasks"', async() => {
         {description: "task 2", done: false}]
     );
 });
+
+test('array "tasks" is array in JSON format', async() => {
+    const response = await supertest(app).get('/todo');
+    const tasks = JSON.parse(response.text);
+    expect(Array.isArray(tasks)).toBeTruthy()
+});
+
+test('GET /jibberish', done => {
+    supertest(app)
+    .get('/dafwedsvgsa')
+    .expect(404)
+    .end(done);
+});
