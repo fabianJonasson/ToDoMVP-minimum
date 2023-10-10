@@ -29,4 +29,5 @@ js (på klienten)
 ### Log
 - fick några fel vid npm install, behövde uppdatera pug och express med "npm audit fix --force" (fungerade inte utan --force)
 - hur kollar man content type med jest ?? res.json skickar html för mig enligt webkonsolen??? (det var inget, kollade på fel ställe)
-- 
+- Att länka client.js till index.pug går inte så bra, måste kolla upp hur man inkluderar en js-fil som ska ligga client side !!
+- button onclick ger referenceError när den försöker köra funktionen som ska komma från client.js
